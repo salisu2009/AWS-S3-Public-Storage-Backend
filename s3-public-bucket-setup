@@ -1,0 +1,49 @@
+# AWS S3 Public Bucket Setup  
+
+## 📌 Overview  
+This repository documents how I created and configured a **public Amazon S3 bucket** using the AWS Management Console.  
+Amazon S3 is a widely used service for object storage, static hosting, and cloud-native applications.  
+
+Bucket Created:  
+arn:aws:s3:::atc-africa-backend-public-bucket
+
+yaml
+Copy code
+
+---
+
+## 🛠️ Steps to Create the Bucket  
+
+1. Log in to the [AWS Management Console](https://console.aws.amazon.com/).  
+2. Navigate to **S3** from the services menu.  
+3. Click **Create Bucket**.  
+4. Provide a unique **bucket name** (e.g., `atc-africa-backend-public-bucket`).  
+5. Select the AWS **region** (e.g., `us-east-1`).  
+6. Configure settings (versioning, encryption, tags) as needed.  
+7. Click **Create Bucket**.  
+
+✅ The bucket was successfully created.  
+
+---
+
+## 🔐 Applying a Public Read Policy  
+
+To allow public access to objects:  
+
+1. Go to the **Permissions** tab of your bucket.  
+2. Scroll down to **Bucket Policy** → **Edit**.  
+3. Paste this JSON policy:  
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadGetObject",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::atc-africa-backend-public-bucket/*"
+    }
+  ]
+}
